@@ -18,7 +18,7 @@ jobs:
         ports:
           - 5432:5432
         env:
-          POSTGRES_DB: maquinariadb
+          POSTGRES_DB: maquinaria_db
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         options: >-
@@ -64,4 +64,3 @@ jobs:
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         SONAR_LOGIN: ${{ secrets.SONAR_TOKEN }}
       run: sonarqube-scanner -Dsonar.projectKey=my_project -Dsonar.sources=./ -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-
