@@ -35,8 +35,8 @@ jobs:
       with:
         postgresql version: latest
         postgresql db: 'maquinariadb'
-        postgresql username: 'postgres'
-        postgresql password: 'postgres'
+        postgresql username: 'leen'
+        postgresql password: 'leen'
 
     - name: Run database migrations
       run: npx sequelize db:migrate
