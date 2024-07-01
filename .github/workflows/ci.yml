@@ -33,8 +33,8 @@ jobs:
     - name: Set up PostgreSQL
       uses: harmon758/postgresql-action@v1.0.0
       with:
-        postgresql version: 'latest'
-        postgresql db: 'maquinaria_db'
+        postgresql version: latest
+        postgresql db: 'maquinariadb'
         postgresql username: 'postgres'
         postgresql password: 'postgres'
 
