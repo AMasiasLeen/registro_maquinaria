@@ -3,21 +3,21 @@
     "username": "leen",
     "password": "leen",
     "database": "maquinariadb",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
     "username": "leen",
     "password": "leen",
     "database": "maquinariadb",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
     "username": "leen",
     "password": "leen",
     "database": "maquinariadb",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "dialect": "postgres"
   }
 }
