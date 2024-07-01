@@ -12,6 +12,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:12
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: maquinaria_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -24,22 +39,22 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Wait for PostgreSQL to be ready
+      run: |
+        until pg_isready --host=localhost --port=5432; do
+          sleep 1;
+        done
+
+    - name: Run database migrations
+      env:
+        DATABASE_URL: postgres://postgres:postgres@localhost:5432/maquinaria_db
+      run: npx sequelize db:migrate
+
     - name: Build project
       run: npm run build
 
     - name: Run unit tests
       run: npm test
-
-    - name: Set up PostgreSQL
-      uses: harmon758/postgresql-action@v1.0.0
-      with:
-        postgresql version: latest
-        postgresql db: 'maquinariadb'
-        postgresql username: 'leen'
-        postgresql password: 'leen'
-
-    - name: Run database migrations
-      run: npx sequelize db:migrate
 
     - name: Install SonarQube Scanner
       run: npm install -g sonarqube-scanner
@@ -49,4 +64,3 @@ jobs:
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         SONAR_LOGIN: ${{ secrets.SONAR_TOKEN }}
       run: sonarqube-scanner -Dsonar.projectKey=my_project -Dsonar.sources=./ -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-

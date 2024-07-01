@@ -1,24 +1,23 @@
 {
   "development": {
-    "username": "leen",
-    "password": "leen",
+    "username": "postgres",
+    "password": "postgres",
     "database": "maquinariadb",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "username": "leen",
-    "password": "leen",
+    "username": "postgres",
+    "password": "postgres",
     "database": "maquinariadb",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "username": "leen",
-    "password": "leen",
+    "username": "postgres",
+    "password": "postgres",
     "database": "maquinariadb",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
 }
-
