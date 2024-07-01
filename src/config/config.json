@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "leen",
+    "password": "leen",
+    "database": "maquinariadb",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "leen",
+    "password": "leen",
+    "database": "maquinariadb",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "leen",
+    "password": "leen",
+    "database": "maquinariadb",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}

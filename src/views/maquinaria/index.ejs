@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Maquinarias</title>
+</head>
+<body>
+  <h1>Lista de Maquinarias</h1>
+  <ul>
+    <% maquinarias.forEach(maquinaria => { %>
+      <li><%= maquinaria.nombre %> - <%= maquinaria.descripcion %> - <%= maquinaria.ubicacion %></li>
+    <% }) %>
+  </ul>
+  <a href="/maquinaria/new">Agregar Nueva Maquinaria</a>
+</body>
+</html>

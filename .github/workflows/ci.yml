@@ -1,0 +1,52 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    - name: Run unit tests
+      run: npm test
+
+    - name: Set up PostgreSQL
+      uses: harmon758/postgresql-action@v1.0.0
+      with:
+        postgresql version: '12'
+        postgresql db: 'maquinaria_db'
+        postgresql username: 'postgres'
+        postgresql password: 'postgres'
+
+    - name: Run database migrations
+      run: npx sequelize db:migrate
+
+    - name: Install SonarQube Scanner
+      run: npm install -g sonarqube-scanner
+
+    - name: Run SonarQube analysis
+      env:
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        SONAR_LOGIN: ${{ secrets.SONAR_TOKEN }}
+      run: sonarqube-scanner -Dsonar.projectKey=my_project -Dsonar.sources=./ -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
