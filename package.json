@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "echo 'Building the project...'",
-    "test": "echo 'Running tests...' && exit 0"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,9 @@
     "pg": "^8.12.0",
     "sequelize": "^6.37.3",
     "sequelize-cli": "^6.6.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
   }
 }
